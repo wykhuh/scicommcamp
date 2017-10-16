@@ -49,14 +49,14 @@
 
 
         <div class="form-group">
-          <label for="help_with">I need help with: </label>
-          <textarea v-model="help_with" class="form-control" id="help_with" rows="5"></textarea>
+          <label for="need_help">I need help with: </label>
+          <textarea v-model="need_help" class="form-control" id="need_help" rows="5"></textarea>
         </div>
 
 
         <div class="form-group">
-          <label for="help_for">I'm can offer help with:</label>
-          <textarea v-model="help_for" class="form-control" id="help_for" rows="5"></textarea>
+          <label for="offer_help">I'm can offer help with:</label>
+          <textarea v-model="offer_help" class="form-control" id="offer_help" rows="5"></textarea>
         </div>
 
         <input type="submit">
@@ -81,8 +81,8 @@ export default {
       twitter: null,
       instagram: null,
       bio: null,
-      help_with: null,
-      help_for: null,
+      need_help: null,
+      offer_help: null,
       errors: []
     }
   },
@@ -96,8 +96,8 @@ export default {
         twitter: this.trim(this.twitter),
         instagram: this.trim(this.instagram),
         bio: this.trim(this.bio),
-        help_with: this.trim(this.help_with),
-        help_for: this.trim(this.help_for)
+        need_help: this.trim(this.need_help),
+        offer_help: this.trim(this.offer_help)
       }, this.clearForm)
     },
 
@@ -116,8 +116,8 @@ export default {
       this.twitter = null;
       this.instagram = null;
       this.bio = null;
-      this.help_with = null;
-      this.help_for = null;
+      this.need_help = null;
+      this.offer_help = null;
     },
     
     handleSubmit(event) {
