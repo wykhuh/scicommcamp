@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <app-header></app-header>
+
     <div class="container">
       
       <h1>Add Your Profile</h1>
@@ -59,11 +62,16 @@
         <input type="submit">
       </form>
     </div>
+  </div>
 </template>
 
 <script>
+import Header from './Header.vue';
 
 export default {
+  components: {
+    'app-header': Header
+  },
   name: 'userForm',
   data() {
     return {
