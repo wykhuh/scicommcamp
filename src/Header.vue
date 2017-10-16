@@ -21,7 +21,6 @@
         </li>           
       </ul>
     </div>
-    {{currentUser}}
   </nav>
 </template>
 
