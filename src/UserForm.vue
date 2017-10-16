@@ -3,6 +3,10 @@
       
       <h1>Add Your Profile</h1>
 
+      <div class="alert alert-danger" v-for="error in errors">
+        {{error}}
+      </div>
+
       <form id="myform" @submit="handleSubmit">
         <div class="form-group">
           <label for="name">Name (required)</label>
@@ -63,19 +67,20 @@ export default {
   name: 'userForm',
   data() {
     return {
-      name: '',
-      location: '',
-      email: '',
-      twitter: '',
-      instagram: '',
-      bio: '',
-      help_with: '',
-      help_for: ''
+      name: null,
+      location: null,
+      email: null,
+      twitter: null,
+      instagram: null,
+      bio: null,
+      help_with: null,
+      help_for: null,
+      errors: []
     }
   },
   methods: {
-    saveData() {
-      var newUser = firebase.database().ref('users').push()
+    saveData() {      
+      var newUser = firebase.database().ref('users').push();
       newUser.set({
         name: this.name,
         location: this.location,
@@ -89,24 +94,30 @@ export default {
     },
 
     clearForm() {
-      this.name = ''
-      this.location = ''
-      this.email = ''
-      this.twitter = ''
-      this.instagram = ''
-      this.bio = ''
-      this.help_with = ''
-      this.help_for = ''
+      this.name = null;
+      this.location = null;
+      this.email = null;
+      this.twitter = null;
+      this.instagram = null;
+      this.bio = null;
+      this.help_with = null;
+      this.help_for = null;
     },
     
     handleSubmit(event) {
       event.preventDefault();
+      this.errors = [];
+  
 
-      this.saveData();
+      if (!this.name) {
+        this.errors = ['Name is required']
+      } 
 
-
+      if(this.errors.length == 0) {
+        this.saveData();
+      }
     }
-  }
+  },
 }
 
 </script>
