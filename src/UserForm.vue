@@ -131,6 +131,7 @@ export default {
 
       if(this.errors.length == 0) {
         this.saveData();
+        this.$router.push('/users')
       }
     }
   },
