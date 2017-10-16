@@ -6,7 +6,15 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-new Vue({
-  el: '#app',
-  render: h => h(UserList)
+const routes = [
+  { path: '/', component: UserList },
+  { path: '/add_profile', component: UserForm }
+]
+
+const router = new VueRouter({
+  routes
 })
+
+new Vue({
+  router
+}).$mount('#app')
