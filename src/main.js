@@ -12,29 +12,30 @@ Vue.use(VueFire)
 
 const routes = [
   { path: '/', component: Login },
-  { path: '/users', component: UserList },
-  { path: '/add_profile', component: UserForm },  
+  { path: '/users', component: UserList, meta: { auth: true }},
+  { path: '/add_profile', component: UserForm, meta: { auth: true }},  
 ]
 
 const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.some(record => record.meta.auth)) {
-//     firebase.auth().onAuthStateChanged(function(user) {
-//       if (!user) {
-//         next({
-//             path: '/login'
-//         })
-//       } else {
-//         next()
-//       }
-//     })
-//   } else {
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.auth)) {
+    firebase.auth().onAuthStateChanged(function(user) {
+      debugger
+      if (!user) {
+        next({
+            path: '/'
+        })
+      } else {
+        next()
+      }
+    })
+  } else {
+    next()
+  }
+})
 
 new Vue({
   router

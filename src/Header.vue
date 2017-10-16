@@ -8,29 +8,25 @@
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item" v-if="currentUser">
           <router-link class="nav-link" to="/users">Users</router-link>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" v-if="currentUser">
           <router-link class="nav-link" to="/add_profile">Add your Profile</router-link>
         </li>
 
-        <li class="nav-item">
-            <router-link class="nav-link" v-on:click="logout" to="/">Logout</router-link>
+        <li class="nav-item" v-if="currentUser">
+            <a class="nav-link" v-on:click="logout" href="/">Logout</a>
         </li>           
       </ul>
     </div>
+    {{currentUser}}
   </nav>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      user: firebase.auth().currentUser
-    }
-  },
   methods: {
     logout() {
       var context = this;
@@ -39,6 +35,9 @@ export default {
         console.log(error);
       });
     }
+  },
+  computed: {
+    currentUser: () => firebase.auth().currentUser
   }
 }
 </script>
