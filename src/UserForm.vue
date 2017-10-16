@@ -82,15 +82,23 @@ export default {
     saveData() {      
       var newUser = firebase.database().ref('users').push();
       newUser.set({
-        name: this.name,
-        location: this.location,
-        email: this.email,
-        twitter: this.twitter,
-        instagram: this.instagram,
-        bio: this.bio,
-        help_with: this.help_with,
-        help_for: this.help_for
+        name: this.trim(this.name),
+        location: this.trim(this.location),
+        email: this.trim(this.email),
+        twitter: this.trim(this.twitter),
+        instagram: this.trim(this.instagram),
+        bio: this.trim(this.bio),
+        help_with: this.trim(this.help_with),
+        help_for: this.trim(this.help_for)
       }, this.clearForm)
+    },
+
+    trim(field) {
+      if(typeof field === 'string') {
+        return field.trim()
+      } else {
+        return field
+      }
     },
 
     clearForm() {
@@ -109,7 +117,7 @@ export default {
       this.errors = [];
   
 
-      if (!this.name) {
+      if (!this.name || !this.name.trim()) {
         this.errors = ['Name is required']
       } 
 

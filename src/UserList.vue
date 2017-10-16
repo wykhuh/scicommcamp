@@ -47,13 +47,13 @@
 </template>
 
 <script>
+var usersRef = firebase.database().ref('users')
+
 export default {
   name: 'userList',
-  data: () => {
-    return {
-      users: [{name: 'a', location: 'la'}, {name: 'b', email: 'dd'}]
-    }
-  }
+  firebase: {
+    users: usersRef
+  },
 }
 
 </script>
